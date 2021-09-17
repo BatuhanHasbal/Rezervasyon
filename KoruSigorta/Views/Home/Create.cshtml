@@ -1,0 +1,85 @@
+﻿@model Rezervasyon.Models.Randevu
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Anasayfa.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Create", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <br /><br />
+        <h2 style="text-align:center;">Randevu Talebi</h2>
+        <hr />
+        @Html.Label("İsim Soyisim")
+        @Html.TextBoxFor(x => x.FullName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.FullName, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Poliçe No")
+        @Html.TextBoxFor(x => x.PolicyNo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PolicyNo, "", new { @style = "color:red" })
+
+        <br />
+        @Html.Label("TC No")
+        @Html.TextBoxFor(x => x.TcNo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.TcNo, "", new { @style = "color:red" })
+
+        <br />
+        @Html.Label("Telefon Numarası")
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", id = "phone", placeholder = "(555) 555-55-55" })
+        @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @style = "color:red" })
+
+        <br />
+        @Html.Label("İl")
+        @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.City, "", new { @style = "color:red" })
+
+        <br />
+        @Html.Label("İlçe")
+        @Html.TextBoxFor(x => x.District, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.District, "", new { @style = "color:red" })
+
+        <br />
+        @Html.Label("Tarih")
+        @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+        @Html.ValidationMessageFor(x => x.Date, "", new { @style = "color:red" })
+
+
+        <br />
+        <button class="btn btn-info" style="position:absolute;width:40%;right:30%;">Kaydet</button>
+        <br />
+
+    </div>
+
+}
+<div class="toast">
+    <div class="toast-header">
+        Toast Header
+    </div>
+    <div class="toast-body">
+        Some text inside the toast body
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#myBtn").click(function () {
+                $('.toast').toast('show');
+            });
+        });
+    </script>
+}
+
+

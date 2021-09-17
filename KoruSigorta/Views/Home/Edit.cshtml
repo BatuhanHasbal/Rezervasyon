@@ -1,0 +1,50 @@
+﻿@model Rezervasyon.Models.Randevu
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Randevu Onaylama</h2>
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("İsim Soyisim")
+    @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @readonly = "true" })
+    <br />
+    @Html.Label("Poliçe No")
+    @Html.TextBoxFor(x => x.PolicyNo, new { @class = "form-control", @readonly = "true" })
+    <br />
+    @Html.Label("TC No")
+    @Html.TextBoxFor(x => x.TcNo, new { @class = "form-control", @readonly = "true" })
+    <br />
+    @Html.Label("Telefon Numarası")
+    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @readonly = "true" })
+    <br />
+    @Html.Label("İl")
+    @Html.TextBoxFor(x => x.City, new { @class = "form-control", @readonly = "true" })
+    <br />
+    @Html.Label("İlçe")
+    @Html.TextBoxFor(x => x.District, new { @class = "form-control", @readonly = "true" })
+    <br />
+    @Html.Label("Tarih")
+    @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+    <br />
+    <button class="btn btn-success">Onayla</button>
+
+
+</div>
+}
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,64 @@
+﻿@using Rezervasyon.Models
+@model List<Randevu>
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <br />
+
+    <h2>Onaylanan Randevular</h2>
+
+    <input id="myInput" type="text" placeholder="Ara..">
+    <br />
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>İsim Soyisim</th>
+                <th>Poliçe No</th>
+                <th>TC No</th>
+                <th>Telefon Numarası</th>
+                <th>İl</th>
+                <th>İlçe</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+
+            @foreach (var item in Model)
+            {
+                if (item.Approval == true) //onaylandı ise burada listele
+                {
+                    <tr id="myTable">
+                        <th>@item.ID</th>
+                        <td>@item.FullName</td>
+                        <td>@item.PolicyNo</td>
+                        <td>@item.TcNo</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.City</td>
+                        <td>@item.District</td>
+                        <td>@(((DateTime)item.Date).ToString("dd.MM.yyyy"))</td>
+
+                        @*<td><a href="#" class="btn btn-primary">Başlıklar</a></td>*@
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

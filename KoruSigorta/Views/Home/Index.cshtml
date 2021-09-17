@@ -1,0 +1,45 @@
+﻿@using Rezervasyon.Models
+@model List<Randevu>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Bekleyen Randevular</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>İsim Soyisim</th>
+        <th>Poliçe No</th>
+        <th>TC No</th>
+        <th>Telefon Numarası</th>
+        <th>İl</th>
+        <th>İlçe</th>
+        <th>Tarih</th>
+        <th>Onayla</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.Approval == false) //onaylanmadı ise burada listele
+        {
+            <tr>
+                <th>@item.ID</th>
+                <td>@item.FullName</td>
+                <td>@item.PolicyNo</td>
+                <td>@item.TcNo</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.City</td>
+                <td>@item.District</td>
+                <td>@(((DateTime)item.Date).ToString("dd.MM.yyyy"))</td>
+                <td><a href="/Home/Edit/@item.ID" class="btn btn-warning">Onayla</a></td>
+
+                @*<td><a href="#" class="btn btn-primary">Başlıklar</a></td>*@
+            </tr>
+        }
+
+
+    }
+
+</table>
